@@ -1,0 +1,47 @@
+.main-nav {
+    display: flex;
+    justify-content: center;
+
+    .nav-content {
+        width: 80%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .site-title {
+        color: #59ab6e;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        font-size: 48px;
+    }
+
+    .navigation-links {
+        display: flex;
+        color: #212934;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px !important;
+        font-weight: 300 !important;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+    }
+
+    li {
+        list-style: none;
+    
+    }
+
+    li:hover {
+        color: #59ab6e;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+    }
+}

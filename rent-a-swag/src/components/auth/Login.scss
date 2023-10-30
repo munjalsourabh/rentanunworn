@@ -1,0 +1,73 @@
+.auth-main-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 15px;
+}
+
+.main-logo-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+    img {
+        height: 300px;
+    }
+
+}
+.login-form {
+    .css-10ou5kq-MuiInputBase-root-MuiFilledInput-root {
+        background: none;
+    }
+
+    .css-10ou5kq-MuiInputBase-root-MuiFilledInput-root:focus {
+        background: none;
+    }
+}
+
+.close-auth {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    top: -11px;
+    left: 8px;
+
+    svg {
+        font-size: 2.5em;
+        color: #5aab6e;
+    }
+
+}
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.css-75cjuy-MuiInputBase-root-MuiFilledInput-root {
+    background: none !important;
+
+    &:hover {
+        background: none !important;
+    }
+
+    &:focus {
+        background: none !important;
+    }
+}
+
+.submit-button-container {
+    margin: 3% 0;
+}
+
+.register-link {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+
+    a {
+        padding-left: 53px;
+    }
+}
+
