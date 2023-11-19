@@ -1,0 +1,19 @@
+.categories-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+
+    .category-image {
+        height: 70px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nike img {
+        height: 56px;
+    }
+
+    .all-saints img, .asos img {
+        height: 77px;
+    }
+}

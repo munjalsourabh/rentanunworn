@@ -46,3 +46,16 @@
   justify-content: center;
   align-items: center;
 }
+
+.alert-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10%;
+  width: 80%;
+}
+
+.navigate {
+  color: #5aab6e;
+  cursor: pointer;
+}
