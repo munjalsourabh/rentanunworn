@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Slide from '@mui/material/Slide';
 import { useSelector } from 'react-redux';
@@ -16,14 +16,15 @@ import Button from '@mui/material/Button';
 
 
 import './Login.scss'
-import { Typography, useRadioGroup } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Register } from './Register';
 
 import { useDispatch } from 'react-redux';
 import { hideAuth } from '../../features/auth/authSlice';
+import { useLoginMutation } from '../../features/apiSlice';
+import { showAlert } from '../../features/alert/alertSlice';
 
 const ecoGreen = require('../../../src/assets/login.png');
-
 
 export const Login = () => {
     const showLogin = useSelector((state) => state.authentication.showAuth);
@@ -31,12 +32,29 @@ export const Login = () => {
     const [showRegister, setShowRegister] = useState(false)
     const dispatch = useDispatch();
 
+    const [login, {data, isSuccess: isMutationSuccess}] = useLoginMutation();
+
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
     const containerRef = React.useRef(null);
+
+    const loginUser = () => {
+        const email = document.getElementById('username').value;
+        const password = document.getElementById('login-password').value;
+        login({email, password});
+    }
+
+    useEffect(() => {
+        if (isMutationSuccess) {
+            console.log('succ mutation')
+            dispatch(showAlert('Login Success'));
+            localStorage.setItem('accessToken', data['accessToken'])
+        }
+    }, [ isMutationSuccess])
+
     return (
         <>
             {showLogin && (
@@ -81,21 +99,21 @@ export const Login = () => {
                                                 />
                                             </FormControl>
                                             <div className='submit-button-container'>    
-                                                <Button variant="contained" sx={{
+                                                <Button variant="contained" onClick={loginUser} sx={{
                                                     ':hover': {
                                                     bgcolor: 'primary.main', // theme.palette.primary.main
                                                     color: 'white',
                                                     },
-                                                }}>Submit</Button>
+                                                }}>Login</Button>
                                             </div>
 
                                             <div className='register-link'>
                                                 {"Not having an account "} <a  className="" href={() => null}
-                                                onClick={() => setShowRegister(true)}>Register</a>
+                                                onClick={() => setShowRegister(true)}><span className='navigate'>Register</span></a>
                                             </div>
                                         </div>) :
                                             (
-                                                <Register />
+                                                <Register setShowRegister={setShowRegister}/>
                                             )
                                         }
                                 </div>

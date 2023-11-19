@@ -1,23 +1,39 @@
 import './Header.scss'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {User} from '../user/User';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import SearchIcon from '@mui/icons-material/Search';
 
-export const Header = () => (
+export const Header = () => {
+    const timeSlots = Array.from(new Array(24 * 2)).map(
+        (_, index) =>
+            `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${
+            index % 2 === 0 ? '00' : '30'
+            }`,
+        );
+    
+    return (
     <nav className="main-nav">
         <div className="nav-content">
             <span className="site-title">   
-                {'UnTagged'}
+                {'VeeRent'}
             </span>   
-            <span className='navigation-links'>
-                <li>{"Home"}</li>
-                <li>{"About"}</li>
-                <li>{"Shop"}</li>
-                <li>{"Contact"}</li>
+            <span className='search-container'>
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    size="small"
+                    options={timeSlots}
+                    sx={{ width: 300 }}
+                    popupIcon={<SearchIcon />}
+                    renderInput={(params) => <TextField {...params} label="Search" />}
+                />
             </span> 
             <span className='nav-actions'>
-                <span>
+                {/* <span>
                     <ShoppingCartIcon></ShoppingCartIcon>
-                </span>
+                </span> */}
                 <span>
                     <User></User>
                 </span>
@@ -25,4 +41,4 @@ export const Header = () => (
             </span>
         </div>
     </nav>
-)
+)}

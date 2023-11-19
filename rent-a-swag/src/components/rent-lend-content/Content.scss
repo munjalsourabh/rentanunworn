@@ -1,0 +1,35 @@
+.content-container {
+    margin-top: 35px;
+
+    .rent-heading {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sections {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cam-girls-container {
+        position: relative;
+        top: -50px
+    }
+
+    .cam-girl, .peeps {
+        width: 30%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .lending-content {
+        margin-top: 70px;
+
+        .lend-heading {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
