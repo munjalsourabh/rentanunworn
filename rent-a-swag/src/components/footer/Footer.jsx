@@ -11,7 +11,7 @@ const Footer = () => {
                     </Typography>
                 </div>
                 <div className='tnc-section'>
-
+                
                 </div>
             </div>
             <div className='email-section'>

@@ -25,9 +25,9 @@ export const Header = () => {
                     id="combo-box-demo"
                     size="small"
                     options={timeSlots}
-                    sx={{ width: 300 }}
+                    sx={{ width: 400 }}
                     popupIcon={<SearchIcon />}
-                    renderInput={(params) => <TextField {...params} label="Search" />}
+                    renderInput={(params) => <TextField {...params} label="Search by brand, location, color, occassion..." />}
                 />
             </span> 
             <span className='nav-actions'>
