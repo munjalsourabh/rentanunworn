@@ -17,6 +17,8 @@
 
 }
 .login-form {
+    overflow: auto;
+
     .css-10ou5kq-MuiInputBase-root-MuiFilledInput-root {
         background: none;
     }
@@ -59,12 +61,19 @@
 }
 
 .register-link {
-    margin: 50px 0;
+    margin: 30px;
     display: flex;
     justify-content: center;
 
     a {
-        padding-left: 53px;
+        padding-left: 7px;
     }
+}
+
+.forgot-password-link {
+    color: #5aab6e;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 

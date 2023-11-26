@@ -21,8 +21,9 @@ import { Register } from './Register';
 
 import { useDispatch } from 'react-redux';
 import { hideAuth } from '../../features/auth/authSlice';
-import { useLoginMutation } from '../../features/apiSlice';
+import { useLoginMutation, useGetUserQuery } from '../../features/apiSlice';
 import { showAlert } from '../../features/alert/alertSlice';
+import ForgotPassword from './ForgotPassword';
 
 const ecoGreen = require('../../../src/assets/login.png');
 
@@ -30,6 +31,7 @@ export const Login = () => {
     const showLogin = useSelector((state) => state.authentication.showAuth);
     const [showPassword, setShowPassword] = React.useState(false);
     const [showRegister, setShowRegister] = useState(false)
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
     const dispatch = useDispatch();
 
     const [login, {data, isSuccess: isMutationSuccess}] = useLoginMutation();
@@ -49,11 +51,22 @@ export const Login = () => {
 
     useEffect(() => {
         if (isMutationSuccess) {
-            console.log('succ mutation')
             dispatch(showAlert('Login Success'));
-            localStorage.setItem('accessToken', data['accessToken'])
+            localStorage.setItem('accessToken', data['accessToken']);
+            window.dispatchEvent( new Event('storage') )
+            dispatch(hideAuth());
         }
     }, [ isMutationSuccess])
+
+    const hideAuthentication = () => {
+        dispatch(hideAuth());
+        setShowForgotPassword(false);
+    }
+
+    const redirectLogin = () => {
+        setShowRegister(false);
+        setShowForgotPassword(false);
+    }
 
     return (
         <>
@@ -61,14 +74,14 @@ export const Login = () => {
                 <div className="login-container">                    
                     <Box sx={{ display: 'flex', flexDirection:'column', p: 2, overflow: 'hidden', width: '70%' ,height: '80%', }} ref={containerRef}>
                         <Paper elevation={3} sx={{height: '100%'}}>
-                            <span className='close-auth'><HighlightOffSharpIcon onClick={() => dispatch(hideAuth())}></HighlightOffSharpIcon></span>
+                            <span className='close-auth'><HighlightOffSharpIcon onClick={hideAuthentication}></HighlightOffSharpIcon></span>
                             <Slide in={showLogin} container={containerRef.current}>
                                 <div className='auth-main-container'>
                                     <div className='main-logo-container'>
                                         <img src={ecoGreen} alt="" className='' />
                                     </div>
-
-                                        {!showRegister ? (<div className='login-form'>
+                                    {showForgotPassword ? <ForgotPassword redirectLogin={redirectLogin}></ForgotPassword> :
+                                        !showRegister ? (<div className='login-form'>
                                             <Typography variant="h4" color="#59ab6e" sx={{p:4}}>Login</Typography>
                                             <FormControl fullWidth sx={{ m: 1, width: '90%' }} variant="standard">
                                                 <InputLabel htmlFor="standard-adornment-amount">Email</InputLabel>
@@ -108,9 +121,9 @@ export const Login = () => {
                                             </div>
 
                                             <div className='register-link'>
-                                                {"Not having an account "} <a  className="" href={() => null}
-                                                onClick={() => setShowRegister(true)}><span className='navigate'>Register</span></a>
+                                                {"Not having an account ?"} <a  className="" onClick={() => setShowRegister(true)}><span className='navigate'>Register</span></a>
                                             </div>
+                                            <div className='forgot-password-link' onClick={() => {setShowForgotPassword(true)}}>{'Forgot Password?'}</div>
                                         </div>) :
                                             (
                                                 <Register setShowRegister={setShowRegister}/>

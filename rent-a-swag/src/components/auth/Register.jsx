@@ -64,11 +64,9 @@ export function Register({setShowRegister}) {
 
 
     useEffect(() => {
-        console.log('mutaiton')
         if (isMutationSuccess) {
             dispatch(showAlert('Registration successful, please Login to continue'));
         }
-        console.log('dataaa ', data)
     }, [isMutationSuccess])
 
     return (
@@ -105,7 +103,6 @@ export function Register({setShowRegister}) {
             <InputLabel htmlFor="filled-adornment-password" error={password.length == 0}>Password</InputLabel>
             <FilledInput
                 autoComplete="off"
-                id="login-password"
                 error={password.length == 0}
                 onChange={(e) => {
                     setPassword(e.target.value)
@@ -134,7 +131,6 @@ export function Register({setShowRegister}) {
                 onChange={(e) => {
                     setConfirmPassword(e.target.value)
                 }}
-                id="login-password"
                 endAdornment={
                 <InputAdornment position="end">
                     

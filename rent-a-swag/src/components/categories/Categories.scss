@@ -7,7 +7,12 @@
         height: 70px;
         display: flex;
         justify-content: center;
+
+        img {
+            max-width: 110px;
+        }
     }
+
 
     .nike img {
         height: 56px;

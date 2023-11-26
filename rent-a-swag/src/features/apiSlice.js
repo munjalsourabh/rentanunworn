@@ -26,11 +26,29 @@ export const authApi = createApi({
                     password,
                 }
             }),
+        }),
+        getUser: builder.mutation({
+            query: () => ({
+                url: '/user/me',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+        }),
+        getProducts: builder.mutation({
+            query: () => ({
+                url: '/product',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
         })
     })
 })
 
 
-export const {useSignUpMutation, useLoginMutation} = authApi;
+export const {useSignUpMutation, useLoginMutation, useGetUserMutation, useGetProductsMutation} = authApi;
 
 export default authApi.reducer;

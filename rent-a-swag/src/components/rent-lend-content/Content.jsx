@@ -16,10 +16,16 @@ const Content = () => {
                     </div>
                     <div className='rent-content'>
                         <Typography variant='body1'>
-                            <div>{'Revamp your wardrobe without the clutter. Rent top brands'}</div>
-                            <div>{'and unique finds on our platform. Express yourself'}</div>
-                            <div>{'sustainibly, and hassle-free. Your style, your way - start renting'}</div>
-                            <div>{'today'}</div>
+                            {'Revamp your wardrobe without the clutter. Rent top brands'}
+                        </Typography>
+                        <Typography variant='body1'>
+                            {'and unique finds on our platform. Express yourself'}
+                        </Typography>
+                        <Typography variant='body1'>
+                            {'sustainibly, and hassle-free. Your style, your way - start renting'}
+                        </Typography>
+                        <Typography variant='body1'>
+                            {'today'}
                         </Typography>
                     </div>
                 </div>
