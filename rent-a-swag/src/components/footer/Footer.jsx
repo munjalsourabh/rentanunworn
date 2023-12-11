@@ -1,6 +1,8 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 
+import './Footer.scss';
+
 const Footer = () => {
     return (
         <div>

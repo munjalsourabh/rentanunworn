@@ -1,0 +1,35 @@
+.filter-container {
+    padding: 4px;
+
+    .MuiFormControlLabel-label {
+        font-size: 0.8rem
+    }
+
+    .MuiButtonBase-root.MuiCheckbox-root.MuiCheckbox-colorPrimary.MuiCheckbox-sizeMedium {
+        padding: 4px;
+    }
+
+    .clothes-shoes-filter {
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+.price-range {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10% 0 10% 10%;
+}
+
+.clothes-shoes-filter {
+    margin-left: 14px;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 19px;
+}

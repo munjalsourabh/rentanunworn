@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,7 +12,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { useSignUpMutation } from '../../features/apiSlice';
 import './Register.scss'
-import { Typography, stepLabelClasses } from '@mui/material';
+import { Typography } from '@mui/material';
 import { showAlert } from '../../features/alert/alertSlice';
 
 

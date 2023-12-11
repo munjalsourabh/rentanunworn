@@ -4,6 +4,7 @@ import {User} from '../user/User';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '@mui/icons-material/Search';
+import Filters from '../filters/Filters';
 
 export const Header = () => {
     const timeSlots = Array.from(new Array(24 * 2)).map(
@@ -16,6 +17,9 @@ export const Header = () => {
     return (
     <nav className="main-nav">
         <div className="nav-content">
+            <span>
+                <Filters></Filters>
+            </span>
             <span className="site-title">   
                 {'VeeRent'}
             </span>   

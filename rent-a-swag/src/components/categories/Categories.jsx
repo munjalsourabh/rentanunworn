@@ -1,28 +1,30 @@
 
 import { Paper, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './Categories.scss'
 import { useGetProductsMutation } from '../../features/apiSlice';
-const Gucci_cap = require('../../../src/assets/gucci_cap_r.png');
-const Nike_camo = require('../../../src/assets/nike_camo_r.png');
-const Asos = require('../../../src/assets/asos_r.png');
-const All_saints = require('../../../src/assets/all_saints_r.png');
-const Sabyasachi = require('../../../src/assets/sabyasachi.png');
+import useFilter from '../../hooks/useFilter';
+
 
 const Categories = () => {
-    const [getProduct, {data, isSuccess}] = useGetProductsMutation();
-    const [tempdata, setTempdata] = useState([]);
+    // const [getProduct, {data, isSuccess}] = useGetProductsMutation();
+    // useEffect(() => {
+    //     getProduct();
+    //     console.log(isSuccess);
+    // }, [])
+
+    const products = useFilter();
     useEffect(() => {
-        getProduct();
-        console.log(isSuccess);
-    }, [])
+        console.log('products ', products)
+        // return function() {}
+    }, [products]);
 
     return (
         <>
-        {isSuccess ? (
+        {products.length !== 0 ? (
         <div className='categories-container'>
-            {data.map(({rrp, brand, rentPrice, productImageUrls}) => (
-                    <Paper elevation={1} sx={{width: 120, height: 200}}>
+            {products.map(({rrp, brand, rentPrice, productImageUrls}, index) => (
+                    <Paper elevation={1} sx={{width: 120, height: 200}} key={index}>
                         {/* <div className='category-heading'>
                             Gucci
                         </div> */}

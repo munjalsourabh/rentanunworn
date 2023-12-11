@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { showAuth } from '../../features/auth/authSlice';
-import { Button, Typography } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import { useGetUserMutation } from '../../features/apiSlice';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
+import './User.scss'
 
 export function User () {
-
-    let accessToken = localStorage.getItem('accessToken');
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const [getUser, {data: userData}] = useGetUserMutation();
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();    
@@ -18,16 +20,32 @@ export function User () {
         dispatch(showAuth())
     }
 
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     useEffect(() => {
         window.addEventListener('storage', () => {
             if (localStorage.getItem('accessToken')) {
                 getUser();
             }
         });
+        if (localStorage.getItem('accessToken')) {
+            getUser();
+        }
     }, [])
     return (
     <div>
-        {/* <PersonIcon onClick={handleClick}></PersonIcon>
+    {   userData ? <>
+        <div className='action-icons'>
+            <PersonOutlineOutlinedIcon onClick={handleClick}></PersonOutlineOutlinedIcon>
+            <FavoriteBorderOutlinedIcon onClick={handleClick}></FavoriteBorderOutlinedIcon>
+            <ShoppingCartOutlinedIcon onClick={handleClick}></ShoppingCartOutlinedIcon>
+        </div>
         <Menu
         id="user-menu"
         anchorEl={anchorEl}
@@ -38,17 +56,15 @@ export function User () {
         }}
         >
 
-            {userName ? <MenuItem onClick={handleClose}>{userName}</MenuItem> : <MenuItem onClick={handleClose}>Login/Register</MenuItem>}
+            {userData ? <MenuItem onClick={handleClose}>{userData.firstName}</MenuItem> : <MenuItem onClick={handleClose}>Login/Register</MenuItem>}
             <MenuItem onClick={handleClose}>My account</MenuItem>
-        </Menu> */}
-        {userData ?
-        (
-            <Typography variant="overline">
-                {userData.firstName}
-            </Typography>
-        ) : (
-            <Button onClick={opneAuth} >Login/Register</Button>
-        )}
+            <MenuItem onClick={handleClose}>Inbox</MenuItem>
+            <MenuItem onClick={handleClose}>Renting</MenuItem>
+            <MenuItem onClick={handleClose}>Lending</MenuItem>
+            <MenuItem onClick={handleClose}>Wardrobe</MenuItem>
+            <MenuItem onClick={handleClose}>Fashion Footprint</MenuItem>
+        </Menu> </> :
+        <Button onClick={opneAuth} >Login/Register</Button>}
     </div>
     )
 }

@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import UserHelp from '../user-help/UserHelp';
 import Content from '../rent-lend-content/Content';
 import SiteCaption from '../site-caption/SiteCaption';
+import Footer from '../footer/Footer';
 
 const TopNavigation = () => {
     return (
@@ -33,6 +34,7 @@ const TopNavigation = () => {
             </Content>
 
             <SiteCaption></SiteCaption>
+            <Footer></Footer>
         </div>
     )
 }
