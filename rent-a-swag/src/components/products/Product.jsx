@@ -1,25 +1,34 @@
-
-import { Paper, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import './Categories.scss'
-import { useGetProductsMutation } from '../../features/apiSlice';
+import React, { useEffect } from 'react'
+import { CircularProgress, Paper, Typography } from '@mui/material';
 import useFilter from '../../hooks/useFilter';
+import './Product.scss';
 
+const Product = () => {
 
-const Categories = () => {
-    const [products] = useFilter();
-
-    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [products, isLoading] = useFilter();
     useEffect(() => {
-        setFilteredProducts([...products.splice(0, 5)])
+        console.log('products ', products)
     }, [products]);
+
+    // useEffect(() => {
+    //     console.log('isloading ', isLoading);
+    // }, [isLoading])
 
     return (
         <>
-        {filteredProducts.length !== 0 ? (
-        <div className='categories-container'>
-            {filteredProducts.map(({rrp, brand, rentPrice, imageUrls}, index) => (
-                    <Paper elevation={1} sx={{width: 120, height: 200}} key={index}>
+        {isLoading &&(
+            <div>
+                <CircularProgress></CircularProgress>
+            </div>
+        )}
+                
+        
+        <div className='main-layout'>
+        {products.length !== 0 ? (
+
+        <div className='product-container'>
+            {products.map(({rrp, brand, rentPrice, imageUrls}, index) => (
+                    <Paper elevation={1} sx={{minWidth: 120, height: 200}} key={index}>
                         {/* <div className='category-heading'>
                             Gucci
                         </div> */}
@@ -44,8 +53,10 @@ const Categories = () => {
             )}
         </div>
         ) : ''}
+        </div>
         </>
         )
-    }
 
-export default Categories
+}
+
+export default Product

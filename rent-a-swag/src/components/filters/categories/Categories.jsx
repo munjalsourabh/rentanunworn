@@ -1,15 +1,16 @@
 import React from 'react'
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel } from '@mui/material'
+import { useDispatch } from 'react-redux'
 import { addCategories, removeCategories } from '../../../features/filters/filtersSlice';
-import { useDispatch } from 'react-redux';
 
 const Categories = () => {
     const dispatch = useDispatch();
-    const handleCategoriesChange = (event) => {
+    const  handleCategoriesChange = (event) => {
         event.target.checked ?
             dispatch(addCategories(event.target.name)) :
             dispatch(removeCategories(event.target.name));
     }
+
 
     return (
         <FormControl sx={{ m: 3 }} component="fieldset" size="small" className='filter-container'>
@@ -17,33 +18,51 @@ const Categories = () => {
             <FormGroup>
                 <FormControlLabel
                     control={
-                    <Checkbox name="Work" className="filter-item"  onChange={handleCategoriesChange}/>
+                    <Checkbox name="Dresses" className="filter-item" onChange={handleCategoriesChange}/>
                 }
-                    label="Work"
+                    label="Dresses"
                 />
                 <FormControlLabel
                     control={
-                    <Checkbox name="Night Out" className="filter-item"  onChange={handleCategoriesChange}/>
+                    <Checkbox name="Jewellery" className="filter-item" onChange={handleCategoriesChange}/>
                     }
-                    label="Night Out"
+                    label="Jewellery"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox name="Holiday" className="filter-item"  onChange={handleCategoriesChange}/>
+                        <Checkbox name="Handbags" className="filter-item" onChange={handleCategoriesChange}/>
                     }
-                    label="Holiday"
+                    label="Handbags"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox name="Wedding Guest" className="filter-item"  onChange={handleCategoriesChange}/>
+                        <Checkbox name="handbags" className="filter-item" onChange={handleCategoriesChange}/>
                     }
-                    label="Wedding Guest"
+                    label="Handbags"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox name="Casual" className="filter-item"  onChange={handleCategoriesChange}/>
+                        <Checkbox name="Tops" className="filter-item" onChange={handleCategoriesChange}/>
                     }
-                    label="Casual"
+                    label="Tops"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox name="Bottoms" className="filter-item" onChange={handleCategoriesChange}/>
+                    }
+                    label="Bottoms"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox name="Jackets & Coats" className="filter-item" onChange={handleCategoriesChange}/>
+                    }
+                    label="Jackets & Coats"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox name="Shoes" className="filter-item" onChange={handleCategoriesChange}/>
+                    }
+                    label="Shoes"
                 />
             </FormGroup>
         </FormControl>

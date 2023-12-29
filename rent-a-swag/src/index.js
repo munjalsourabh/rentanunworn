@@ -9,6 +9,8 @@ import { purple } from '@mui/material/colors';
 
 import {store} from './app/store';
 import { Provider } from 'react-redux';
+import {BrowserRouter, Router, Route, Routes} from 'react-router-dom';
+
 
 
 const primary = {
@@ -28,11 +30,15 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <Routes>
+              <Route path='/*' element={<App />} />
+            </Routes>
+          </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

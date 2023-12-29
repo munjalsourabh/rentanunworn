@@ -1,0 +1,11 @@
+.product-container {
+    .category-image {
+        height: 70px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            max-width: 110px;
+        }
+    }
+}

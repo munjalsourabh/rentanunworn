@@ -5,16 +5,21 @@ import { useEffect, useState } from "react";
 export default function useFilter() {
     const filters = useSelector((state) => state.filters)
 
-    const [getProducts, {data, isSuccess}] = useGetProductsMutation();
+    const [getProducts, {data, isSuccess, isLoading, isError}] = useGetProductsMutation();
+
+    const isLoggedIn = useSelector(state => state.authentication.isLoggedIn)
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        getProducts().then((response) => {
-            console.log(' response ', response );
-            setProducts([...response.data]);
-        });
-        console.log('inside custom hook');
-    }, [filters])
+        // if (isLoggedIn) {
+            console.log(' filters ', filters);
+            getProducts(filters).then((response) => {
+                console.log(' response ', response );
+                setProducts([...response.data]);
+            });
+            console.log('inside custom hook');
+        // }
+    }, [filters, isLoggedIn])
 
-    return products;
+    return [products, isLoading];
 }

@@ -10,7 +10,6 @@ const initialState = {
         priceRange: [],
         availability: [],
         radius: [],
-
     } 
 };
 
@@ -51,10 +50,10 @@ export const filtersSlice = createSlice({
             state.filters.clothSize.splice(filterIndex, 1);
         },
 
-        addShoes: (state, {payload}) => {
+        addShoesSize: (state, {payload}) => {
             state.filters.shoes = [...state.filters.shoes, payload];
         },
-        removeShoes: (state, {payload}) => {
+        removeShoesSize: (state, {payload}) => {
             const filterIndex = state.filters.shoes.indexOf(payload);
             state.filters.shoes.splice(filterIndex, 1);
         },
@@ -74,9 +73,31 @@ export const filtersSlice = createSlice({
             const filterIndex = state.filters.availability.indexOf(payload);
             state.filters.availability.splice(filterIndex, 1);
         },
+
+        addRadius: (state, {payload}) => {
+            state.filters.radius = [payload];
+        },
+        removeRadius: (state, {payload}) => {
+            state.filters.radius = [];
+        }
     }
 })
 
-export const {addCategories, removeCategories, addOccasssion, removeOccassion} = filtersSlice.actions;
+export const {
+    addCategories,
+    removeCategories,
+    addOccasssion,
+    removeOccassion,
+    addFit,
+    removeFit,
+    addShoesSize,
+    addClothSize,
+    addPriceRange,
+    removePriceRange,
+    addAvailability,
+    removeAvailability,
+    addRadius,
+    removeRadius
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;

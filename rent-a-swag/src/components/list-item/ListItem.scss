@@ -1,0 +1,32 @@
+.renting-headings {
+    color: #5AAB6E;
+}
+
+// .photos-container {
+//     width: 70%;
+// }
+
+.list-item-container {
+    width: 70%;
+}
+
+.info-n-price {
+    display: flex;
+    justify-content: space-between;
+
+    & > fieldset {
+        width: 50%;
+    }
+}
+
+.item-description {
+    .renting-headings {
+        margin-top: 10px;
+    }
+
+    textarea {
+        width: 300px;
+        height: 80px  !important;
+        margin-top: 10px;
+    }
+}

@@ -1,13 +1,18 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React, { useState } from 'react';
 import './Location.scss';
+import { useDispatch } from 'react-redux';
+import { addRadius } from '../../../features/filters/filtersSlice';
 
 const Location = () => {
     const [distance, setDistance] = useState('');
+    const dispatch = useDispatch();
 
     const handleChange = (event) => {
         setDistance(event.target.value);
+        dispatch(addRadius(event.target.value))
     };
+
     return (
     <div className='location-container'>
         <FormControl fullWidth>

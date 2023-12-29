@@ -59,3 +59,21 @@
   color: #5aab6e;
   cursor: pointer;
 }
+
+.flex-row {
+  display: flex;
+}
+
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.pac-container.pac-logo {
+  z-index: 1600 !important;
+}

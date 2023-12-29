@@ -1,0 +1,13 @@
+.category-navigation.navigation-links {
+    margin-top: 15px;
+    display: flex;
+    color: #212934;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    align-items: center;
+    justify-content: space-around;
+}

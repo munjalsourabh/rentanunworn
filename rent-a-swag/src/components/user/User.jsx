@@ -9,12 +9,14 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import './User.scss'
+import { useNavigate } from 'react-router-dom';
 
 export function User () {
     const [anchorEl, setAnchorEl] = useState(null);
     const [getUser, {data: userData}] = useGetUserMutation();
     const open = Boolean(anchorEl);
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const opneAuth = () => {
         dispatch(showAuth())
@@ -27,6 +29,16 @@ export function User () {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const onRentingClick = () => {
+        navigate('/renting')
+        setAnchorEl(null);
+    }
+
+    const onLendingClick = () => {
+        navigate('/renting')
+        setAnchorEl(null);
+    }
 
     useEffect(() => {
         window.addEventListener('storage', () => {
@@ -59,8 +71,8 @@ export function User () {
             {userData ? <MenuItem onClick={handleClose}>{userData.firstName}</MenuItem> : <MenuItem onClick={handleClose}>Login/Register</MenuItem>}
             <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem onClick={handleClose}>Inbox</MenuItem>
-            <MenuItem onClick={handleClose}>Renting</MenuItem>
-            <MenuItem onClick={handleClose}>Lending</MenuItem>
+            <MenuItem onClick={onRentingClick}>Renting</MenuItem>
+            <MenuItem onClick={onLendingClick}>Lending</MenuItem>
             <MenuItem onClick={handleClose}>Wardrobe</MenuItem>
             <MenuItem onClick={handleClose}>Fashion Footprint</MenuItem>
         </Menu> </> :

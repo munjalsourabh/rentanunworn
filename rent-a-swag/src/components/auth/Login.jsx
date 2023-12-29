@@ -20,7 +20,7 @@ import { Typography } from '@mui/material';
 import { Register } from './Register';
 
 import { useDispatch } from 'react-redux';
-import { hideAuth } from '../../features/auth/authSlice';
+import { hideAuth, loginSuccess, loginUnSuccessful } from '../../features/auth/authSlice';
 import { useLoginMutation, useGetUserQuery } from '../../features/apiSlice';
 import { showAlert } from '../../features/alert/alertSlice';
 import ForgotPassword from './ForgotPassword';
@@ -34,7 +34,7 @@ export const Login = () => {
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const dispatch = useDispatch();
 
-    const [login, {data, isSuccess: isMutationSuccess}] = useLoginMutation();
+    const [login, {data, isSuccess: isMutationSuccess, isError}] = useLoginMutation();
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -43,10 +43,14 @@ export const Login = () => {
     };
     const containerRef = React.useRef(null);
 
-    const loginUser = () => {
+    const loginUser =  async () => {
         const email = document.getElementById('username').value;
         const password = document.getElementById('login-password').value;
-        login({email, password});
+        const loginResult = await login({email, password});
+        if (loginResult.error) {
+            dispatch(showAlert('Error in Login'))
+        }
+        console.log(loginResult);
     }
 
     useEffect(() => {
@@ -55,8 +59,12 @@ export const Login = () => {
             localStorage.setItem('accessToken', data['accessToken']);
             window.dispatchEvent( new Event('storage') )
             dispatch(hideAuth());
+            dispatch(loginSuccess());
         }
-    }, [ isMutationSuccess])
+        if (isError) {
+            dispatch(loginUnSuccessful());
+        }
+    }, [ isMutationSuccess, isError])
 
     const hideAuthentication = () => {
         dispatch(hideAuth());

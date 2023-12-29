@@ -1,0 +1,28 @@
+.product-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 70%;
+    column-gap: 45px;
+    row-gap: 23px;
+
+    .category-image {
+        height: 70px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            max-width: 110px;
+        }
+    }
+
+
+    .nike img {
+        height: 56px;
+    }
+
+    .all-saints img, .asos img {
+        height: 77px;
+    }
+}

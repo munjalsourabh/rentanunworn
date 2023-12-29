@@ -1,20 +1,27 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React, { useState } from 'react'
 import '../../filters/Filters.scss'
+import { useDispatch } from 'react-redux'
+import { addClothSize, addShoesSize } from '../../../features/filters/filtersSlice'
 
 const ClothesShoesFilter = () => {
-    const [clothesSize, setClothesSize] = useState('');
+    const dispatch = useDispatch()
+
+    const updateClothesFilter = (event) => {
+        dispatch(addClothSize(event.target.value))
+    }
+
+    const updateShoesSizeFilter = (event) => {
+        dispatch(addShoesSize(event.target.value))
+    }
 
     return (
         <div className='clothes-shoes-filter'>
-                <FormControl variant="standard" sx={{ m: 1, minWidth: 100 }}>
-                    <InputLabel id="demo-simple-select-standard-label">Clothes</InputLabel>
+                <FormControl variant="standard" sx={{ m: 1, width: 80 }}>
+                    <InputLabel >Clothes</InputLabel>
                     <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
-                        value={clothesSize}
-                        onChange={(e) => {setClothesSize(e.target.value)}}
-                        label="Age"
+                        onChange={updateClothesFilter}
+                        label="Size"
                         >
                         <MenuItem value="">
                             <em>None</em>
@@ -44,12 +51,9 @@ const ClothesShoesFilter = () => {
                 </FormControl>
 
                 <FormControl variant="standard" sx={{ m: 1, minWidth: 80 }}>
-                    <InputLabel id="demo-simple-select-standard-label">Shoes</InputLabel>
+                    <InputLabel >Shoes</InputLabel>
                     <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
-                        value={clothesSize}
-                        onChange={(e) => {setClothesSize(e.target.value)}}
+                        onChange={updateShoesSizeFilter}
                         label="Age"
                         >
                         <MenuItem value="">

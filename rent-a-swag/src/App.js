@@ -6,6 +6,12 @@ import MainLayout from './components/main/MainLayout';
 import { useEffect } from 'react';
 import { setLocation } from './features/location/locationSlice';
 import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Product from './components/products/Product';
+import Renting from './components/renting/Renting';
+import Lending from './components/lending/Lending';
+import ListAnItem from './components/list-item/ListAnItem';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +28,16 @@ function App() {
     <>
       <Header />
       <Login></Login>
-      <MainLayout></MainLayout>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+            <Route path='/' element={<MainLayout />} />
+            <Route path='/product' element={<Product />} />
+            <Route path='/renting' element={<Renting />} />``
+            <Route path='/lending' element={<Lending />} />
+            <Route path='/list-item' element={<ListAnItem />} />
+        </Route>
+      </Routes>
+      {/* <MainLayout></MainLayout> */}
       <AppAlert></AppAlert>
     </>
   );
