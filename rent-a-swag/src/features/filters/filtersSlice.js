@@ -10,6 +10,10 @@ const initialState = {
         priceRange: [],
         availability: [],
         radius: [],
+        location: {
+            latitude: '',
+            longitude: ''
+        }
     } 
 };
 

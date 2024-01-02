@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { showAuth } from '../../features/auth/authSlice';
+import { loginSuccess, showAuth } from '../../features/auth/authSlice';
 import { Button, Menu, MenuItem } from '@mui/material';
 import { useGetUserMutation } from '../../features/apiSlice';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -47,7 +47,10 @@ export function User () {
             }
         });
         if (localStorage.getItem('accessToken')) {
-            getUser();
+            getUser().then((resp) => {
+                // debugger;
+                dispatch(loginSuccess());
+            });
         }
     }, [])
     return (

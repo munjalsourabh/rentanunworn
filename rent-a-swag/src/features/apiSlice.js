@@ -27,7 +27,7 @@ const getParams = ({filters}) => {
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://16.16.26.125:8080'}), 
+    baseQuery: fetchBaseQuery({baseUrl: 'https://16.171.253.128:8383'}), 
     endpoints: (builder) => ({
         signUp: builder.mutation({
             query: ({firstName, lastName, email, password}) => ({
@@ -100,26 +100,11 @@ export const authApi = createApi({
             }),
         }),
         uploadItem: builder.mutation({
-            query: (body) => ({
+        query: ({form, itemDetails}) => ({
                 url: '/lender',
                 method: 'POST',
-                params: {
-                    "productName": "shoes",
-                    "rrp": 2000,
-                    "rentPrice": 20,
-                    "brand": "adidas",
-                    "occasion": "casual",
-                    "category": "shoes",
-                    "size": "8",
-                    "fit": "normal",
-                    "type": "shoes",
-                    "gender": "men",
-                    "latitude": 20.4,
-                    "longitude": 30.7,
-                    // "availableFrom": 2023-12-01,
-                    "securityDeposit": 200.0
-                },
-                body,
+                params: itemDetails,
+                body: form,
                 formData: true,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

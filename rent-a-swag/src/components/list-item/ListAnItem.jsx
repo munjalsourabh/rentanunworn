@@ -9,12 +9,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TextareaAutosize } from '@mui/base';
 import Pincode from '../filters/pincode/Pincode';
 import { useUploadItemMutation } from '../../features/apiSlice';
+import dayjs from 'dayjs';
 
 const ListAnItem = () => {
 
   const [itemDetails, setItemDetails] = useState({
-    catgory: '',
-    size: '',
     "productName": "",
     "rrp": '',
     "rentPrice": '',
@@ -33,7 +32,7 @@ const ListAnItem = () => {
 
   const [uploadItem] = useUploadItemMutation()
 
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState([]);
 
   const timeSlots = Array.from(new Array(24 * 2)).map(
     (_, index) =>
@@ -43,14 +42,39 @@ const ListAnItem = () => {
     );
 
   const handleImageChange = (event) => {
-    setFile(event.target.files[0])
+    setFiles([...event.target.files]);
   }
 
   const uploadItems = () => {
     const form = new FormData();
-    form.append("file", file)
+    debugger
+    for (const file of files) {
+      
+      form.append('file', file)
+       // appending every file to formdata
+      
+    }
+    // files[0].forEach((file) => {
+    //   form.append("file", file);
+    // })
+    debugger;
     
-    uploadItem(form);
+    uploadItem({form, itemDetails: {
+      "productName": "shoes",
+      "rrp": itemDetails.rrp,
+      "rentPrice": itemDetails.rentPrice,
+      "brand": "adidas",
+      "occasion": "casual",
+      "category": itemDetails.category,
+      "size": itemDetails.size,
+      "fit": itemDetails.fit,
+      "type": "shoes",
+      "gender": "men",
+      "latitude": itemDetails.latitude,
+      "longitude": itemDetails.longitude,
+      // "availableFrom": 2023-12-01,
+      "securityDeposit": itemDetails.securityDeposit
+  }});
   }
 
   const categoryChange = (event) => {
@@ -64,7 +88,27 @@ const ListAnItem = () => {
   const fitChange = (event) => {
     setItemDetails({...itemDetails, fit: event.target.value})
   }
+
+  const onPlaceSelect = (latitude, longitude) => {
+    setItemDetails((itemDetails) =>  ({...itemDetails, latitude, longitude}));
+  }
+
+  const setRetailPrice = (event) => {
+    setItemDetails({...itemDetails, rrp: event.target.value});
+  }
+
+  const setSecurity = (event) => {
+    setItemDetails({...itemDetails, securityDeposit: event.target.value});
+  }
     
+  const setDelivery = (event) => {
+    setItemDetails({...itemDetails})
+  }
+
+  const setAvailaibility = (value) => {
+    const stringValue = dayjs(value.$d).format('YYYY-MM-DD');
+    setItemDetails({...itemDetails, avaibleFrom: stringValue});
+  }
   return (
     <div className='main-layout'>
       <div className='list-item-container'>
@@ -159,12 +203,12 @@ const ListAnItem = () => {
                     <Typography variant='standard' className='renting-headings'>{'Availability'}</Typography>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
-                            <DatePicker  format="YYYY-MM-DD"/>
+                            <DatePicker format="YYYY-MM-DD" onChange={setAvailaibility}/>
                         </DemoContainer>
                     </LocalizationProvider>
             </div>
             <div>
-              <Pincode elementId={'list-item-location-search'}></Pincode>
+              <Pincode elementId={'list-item-location-search'}  onPlaceSelect={onPlaceSelect}></Pincode>
             </div>
     
 
@@ -185,11 +229,11 @@ const ListAnItem = () => {
                     {/* <Typography variant='standard' className='renting-headings'>{'Retail Price'}</Typography> */}
                     <FormControl sx={{ml: 2, width: '40%'}}>
                         <TextField id="retailPrice" label="Retail Price" variant="standard" type='number'
-                            onChange={() => {}} />
+                            onChange={setRetailPrice} />
                     </FormControl>
                     <FormControl sx={{ml: 2, width: '40%'}}>
                         <TextField id="retailPrice" label="Security Details" variant="standard"
-                            onChange={() => {}} />
+                            onChange={setSecurity} />
                     </FormControl>
                   </div>
                   <div>
@@ -199,31 +243,25 @@ const ListAnItem = () => {
                             onChange={() => {}} />
                     </FormControl>
                     <FormControl sx={{ml: 2, width: '40%'}}>
-                        <TextField id="retailPrice" label="Your Earnings" variant="standard"
-                            onChange={() => {}} />
+                        <TextField id="retailPrice" label="Your Earnings" variant="standard" type='number'
+                            onChange={setRetailPrice} />
                     </FormControl>
                   </div>
 
                   <div>
                     <FormControl sx={{ml: 2, width: '40%'}}>
                         <TextField id="delivery" label="Delivery" variant="standard" type='number'
-                            onChange={() => {}} />
+                            onChange={setDelivery} />
                     </FormControl>
 
                     <FormControl variant="standard" sx={{ml:2, width: '40%' }}>
                       <InputLabel>Delivery Method</InputLabel>
                       <Select
                           onChange={() => {}}
-                          label="Category"
+                          label="Delivery Method"
                           >
-                          {/* <MenuItem value={"Dresses"}>{"Dresses"}</MenuItem>
-                          <MenuItem value={"Jewellery"}>{"Jewellery"}</MenuItem>
-                          <MenuItem value={"Handbags"}>{"Handbags"}</MenuItem>
-                          <MenuItem value={"Handbags"}>{"Handbags"}</MenuItem>
-                          <MenuItem value={"Tops"}>{"Tops"}</MenuItem>
-                          <MenuItem value={"Bottoms"}>{"Bottoms"}</MenuItem>
-                          <MenuItem value={"Jackets & Coats"}>{"Jacket & Coats"}</MenuItem>
-                          <MenuItem value={"Shoes"}>{"Shoes"}</MenuItem> */}
+                          <MenuItem value={"Pick Up"}>{"Pick Up"}</MenuItem>
+                          <MenuItem value={"Courier"}>{"Courier"}</MenuItem>
                       </Select>
               </FormControl>
                   </div>

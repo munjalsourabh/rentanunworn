@@ -11,14 +11,14 @@ export default function useFilter() {
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        // if (isLoggedIn) {
+        if (isLoggedIn) {
             console.log(' filters ', filters);
             getProducts(filters).then((response) => {
                 console.log(' response ', response );
                 setProducts([...response.data]);
             });
             console.log('inside custom hook');
-        // }
+        }
     }, [filters, isLoggedIn])
 
     return [products, isLoading];
