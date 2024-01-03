@@ -18,7 +18,7 @@ const Lending = () => {
 
     return (
         <div className='main-layout'>
-            <fieldset className='renting-container'>
+            <fieldset className='lending-container'>
                 <legend>Lending</legend>
                 <Typography variant='h6' className='renting-headings'>{'My Lends'}</Typography>
 

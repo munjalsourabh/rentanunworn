@@ -1,12 +1,25 @@
-.my-lending-cards {
-    display: flex;
-}
+.lending-container {
+    width: 70%;
+    
+    .my-lending-cards {
+        display: flex;
+        margin: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .dates-lend {
+        display: flex;
+        margin: 30px 25px;
+        justify-content: space-between;
+    }
+    
+    .list-item-button {
+        margin-top: 90px;
+    }
 
-.dates-lend {
-    display: flex;
-    margin-top: 30px;
-}
+    .product-container {
+        width: unset;
+        margin: 10px
+    }
 
-.list-item-button {
-    margin-top: 90px;
 }
