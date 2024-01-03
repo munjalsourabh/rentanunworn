@@ -26,8 +26,10 @@ const ListAnItem = () => {
     "gender": "",
     "latitude": '',
     "longitude": '',
-    // "availableFrom": 2023-12-01,
-    "securityDeposit": ''
+    "availableFrom": '',
+    "securityDeposit": '',
+    "delivery": '',
+    "deliveryMethod": ''
   });
 
   const [uploadItem] = useUploadItemMutation()
@@ -72,7 +74,7 @@ const ListAnItem = () => {
       "gender": "men",
       "latitude": itemDetails.latitude,
       "longitude": itemDetails.longitude,
-      // "availableFrom": 2023-12-01,
+      "availableFrom": itemDetails.avaibleFrom,
       "securityDeposit": itemDetails.securityDeposit
   }});
   }
@@ -102,13 +104,18 @@ const ListAnItem = () => {
   }
     
   const setDelivery = (event) => {
-    setItemDetails({...itemDetails})
+    setItemDetails({...itemDetails, delivery: event.target.value});
   }
 
   const setAvailaibility = (value) => {
     const stringValue = dayjs(value.$d).format('YYYY-MM-DD');
     setItemDetails({...itemDetails, avaibleFrom: stringValue});
   }
+
+  const setDeliveryMethod = (event) => {
+    setItemDetails({...itemDetails, deliver: event.target.value})
+  };
+
   return (
     <div className='main-layout'>
       <div className='list-item-container'>
@@ -257,7 +264,7 @@ const ListAnItem = () => {
                     <FormControl variant="standard" sx={{ml:2, width: '40%' }}>
                       <InputLabel>Delivery Method</InputLabel>
                       <Select
-                          onChange={() => {}}
+                          onChange={setDeliveryMethod}
                           label="Delivery Method"
                           >
                           <MenuItem value={"Pick Up"}>{"Pick Up"}</MenuItem>

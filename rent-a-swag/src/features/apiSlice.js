@@ -112,10 +112,29 @@ export const authApi = createApi({
 
             }),
         }),
+        getLendings: builder.mutation({
+            query: () => ({
+                    url: '/lender',
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                    }
+    
+                }),
+            }),
+            
     })
 })
 
 
-export const {useSignUpMutation, useLoginMutation, useGetUserMutation, useGetProductsMutation, useGetRenterMutation, useUploadItemMutation} = authApi;
+export const {
+    useSignUpMutation,
+    useLoginMutation,
+    useGetUserMutation,
+    useGetProductsMutation,
+    useGetRenterMutation,
+    useUploadItemMutation,
+    useGetLendingsMutation
+} = authApi;
 
 export default authApi.reducer;

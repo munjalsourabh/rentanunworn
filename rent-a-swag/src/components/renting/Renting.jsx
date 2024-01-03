@@ -29,12 +29,12 @@ const Renting = () => {
                 <legend>Renting</legend>
                 <Typography variant='h6' className='renting-headings'>{'My Rentals'}</Typography>
                 <div className='my-rentals-cards'>
-                    {data && data.length && data.map(({imageUrl, rentPrice, rrp}) => (
-                        <ProductCard brand='Gucci' productImageUrl={imageUrl[0]} rentPrice={rentPrice} rrp={rrp} />
+                    {data && data.length && data.map((attributes) => (
+                        <ProductCard attributes={attributes} />
                     ))}
                 </div>
 
-                <div className='renting-info'>
+                {/* <div className='renting-info'>
                     <div className='dates-hired'>
                         <Typography variant='h6' className='renting-headings'>{'Dates Pending'}</Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -75,7 +75,7 @@ const Renting = () => {
                         </FormControl>
                     </div>
 
-                </div>
+                </div> */}
             </fieldset>
         </div>
     )

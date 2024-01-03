@@ -36,7 +36,7 @@ export function User () {
     }
 
     const onLendingClick = () => {
-        navigate('/renting')
+        navigate('/lending')
         setAnchorEl(null);
     }
 

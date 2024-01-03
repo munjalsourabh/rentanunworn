@@ -24,6 +24,7 @@ import { hideAuth, loginSuccess, loginUnSuccessful } from '../../features/auth/a
 import { useLoginMutation, useGetUserQuery } from '../../features/apiSlice';
 import { showAlert } from '../../features/alert/alertSlice';
 import ForgotPassword from './ForgotPassword';
+import { useNavigate } from 'react-router-dom';
 
 const ecoGreen = require('../../../src/assets/login.png');
 
@@ -33,6 +34,8 @@ export const Login = () => {
     const [showRegister, setShowRegister] = useState(false)
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     const [login, {data, isSuccess: isMutationSuccess, isError}] = useLoginMutation();
 
@@ -58,6 +61,8 @@ export const Login = () => {
             dispatch(showAlert('Login Success'));
             localStorage.setItem('accessToken', data['accessToken']);
             window.dispatchEvent( new Event('storage') )
+            navigate('/product')
+            
             dispatch(hideAuth());
             dispatch(loginSuccess());
         }
