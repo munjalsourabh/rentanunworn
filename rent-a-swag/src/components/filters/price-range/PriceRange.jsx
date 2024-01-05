@@ -22,10 +22,9 @@ const PriceRange = () => {
         },
     ];
 
-    const [value1, setValue1] = React.useState([20, 37]);
+    const [value1, setValue1] = React.useState([200, 400]);
 
     const handleChange1 = (event, newValue, activeThumb) => {
-        debugger;
         if (!Array.isArray(newValue)) {
             return;
         }
@@ -35,11 +34,9 @@ const PriceRange = () => {
         } else {
             setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
         }
+        dispatch(addPriceRange(value1));
     };
 
-    const updatePriceFilter = (event, value) => {
-        dispatch(addPriceRange(value));
-    }
     return (
         <div className='price-range'>
             <Typography variant='outlined'>Price Range</Typography>

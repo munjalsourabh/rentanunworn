@@ -21,6 +21,9 @@ const getParams = ({filters}) => {
         if (el == 'occasssion' && allFilters[el].length) {
             filtersToBeApplied['occasions'] = filters.occasssion.join(',');
         }
+        if (allFilters[el].length) {
+            filtersToBeApplied[el] = allFilters[el];
+        }
     });
     return filtersToBeApplied;
 }
@@ -100,7 +103,7 @@ export const authApi = createApi({
             }),
         }),
         uploadItem: builder.mutation({
-        query: ({form, itemDetails}) => ({
+            query: ({form, itemDetails}) => ({
                 url: '/lender',
                 method: 'POST',
                 params: itemDetails,
@@ -109,7 +112,6 @@ export const authApi = createApi({
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                 }
-
             }),
         }),
         getLendings: builder.mutation({

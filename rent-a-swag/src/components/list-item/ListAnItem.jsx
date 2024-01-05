@@ -10,6 +10,7 @@ import { TextareaAutosize } from '@mui/base';
 import Pincode from '../filters/pincode/Pincode';
 import { useUploadItemMutation } from '../../features/apiSlice';
 import dayjs from 'dayjs';
+import { EventNote } from '@mui/icons-material';
 
 const ListAnItem = () => {
 
@@ -49,9 +50,7 @@ const ListAnItem = () => {
 
   const uploadItems = () => {
     const form = new FormData();
-    debugger
     for (const file of files) {
-      
       form.append('file', file)
        // appending every file to formdata
       
@@ -59,7 +58,6 @@ const ListAnItem = () => {
     // files[0].forEach((file) => {
     //   form.append("file", file);
     // })
-    debugger;
     
     uploadItem({form, itemDetails: {
       "productName": "shoes",
@@ -113,8 +111,17 @@ const ListAnItem = () => {
   }
 
   const setDeliveryMethod = (event) => {
-    setItemDetails({...itemDetails, deliver: event.target.value})
+    setItemDetails({...itemDetails, deliver: event.target.value});
   };
+
+  const setBrand = (event) => {
+    setItemDetails({...itemDetails, brand: event.target.value});
+  }
+
+  const setGender = (event) => {
+    setItemDetails({...itemDetails, gender: event.target.value})
+    
+  }
 
   return (
     <div className='main-layout'>
@@ -150,7 +157,7 @@ const ListAnItem = () => {
                     </Select>
             </FormControl>
 
-            <Autocomplete
+            {/* <Autocomplete
                   disablePortal
                   id="combo-box-demo"
                   size="small"
@@ -158,7 +165,23 @@ const ListAnItem = () => {
                   sx={{ width: 300, mt: 2 }}
                   popupIcon={<SearchIcon />}
                   renderInput={(params) => <TextField {...params} label="Search by brand" />}
-                  />
+                  /> */}
+
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 80 }}>
+            <TextField id="brand" label="Brand" variant="standard" onChange={setBrand} />
+          </FormControl>
+
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
+                    <InputLabel>Gender</InputLabel>
+                    <Select
+                        onChange={setGender}
+                        label="Gender"
+                        >
+                        <MenuItem value={"Men"}>{"Men"}</MenuItem>
+                        <MenuItem value={"Women"}>{"Women"}</MenuItem>
+                        <MenuItem value={"Uninsex"}>{"Unisex"}</MenuItem>
+                    </Select>
+            </FormControl>
 
             <FormControl variant="standard" sx={{ m: 1, minWidth: 80 }}>
                     <InputLabel>Size</InputLabel>

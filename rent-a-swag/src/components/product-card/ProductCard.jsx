@@ -17,7 +17,7 @@ const ProductCard = ({attributes}) => {
                 </Typography>
                 <hr />
                 <div className='category-image gucci'>
-                    <img src={imageUrl} alt="" />
+                    <img src={imageUrl[0]} alt="" />
                 </div>
                 <hr />
                 <Typography color="text.secondary" sx={{pl: '4px'}}>

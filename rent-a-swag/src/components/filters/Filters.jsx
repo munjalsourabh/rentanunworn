@@ -18,6 +18,7 @@ import Categories from './categories/Categories';
 import Occassion from './occassion/Occassion';
 import Fit from './fit/Fit';
 import Pincode from './pincode/Pincode';
+import Gender from './gender/Gender';
 
 const Filters = () => {
 
@@ -62,20 +63,23 @@ const Filters = () => {
 
             <Occassion></Occassion>
 
+            <FiltersSearch></FiltersSearch>
+            
             <Divider></Divider>
 
-            <Fit></Fit>
-            <Pincode elementId={'location-search-filter'}></Pincode>
+            <Gender></Gender>
 
-            <FiltersSearch></FiltersSearch>
             <ClothesShoesFilter></ClothesShoesFilter>
-            
+
+            <Fit></Fit>
+
             <PriceRange></PriceRange>
+
             <Calendar></Calendar>
 
             <Location></Location>
 
-
+            <Pincode elementId={'location-search-filter'}></Pincode>
         </Box>
     );
 

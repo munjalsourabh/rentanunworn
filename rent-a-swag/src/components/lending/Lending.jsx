@@ -1,16 +1,17 @@
 import { Button, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import ProductCard from '../product-card/ProductCard';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import './Lending.scss'
 import { useGetLendingsMutation } from '../../features/apiSlice';
-
+import { useNavigate } from 'react-router-dom';
 
 const Lending = () => {
     const [getLendings, {data, isMutation}] = useGetLendingsMutation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getLendings();
@@ -28,14 +29,7 @@ const Lending = () => {
                     ))}
                 </div>
                 <div className='dates-lend'>
-                    <div className='dates-hired'>
-                            <Typography variant='h6' className='renting-headings'>{'Availability'}</Typography>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DemoContainer components={['DatePicker']}>
-                                    <DatePicker  />
-                                </DemoContainer>
-                            </LocalizationProvider>
-                    </div>
+                    
                     <div className='earnings'>
                         <div className=''>
                             <div className='flex-row-center'>
@@ -49,7 +43,7 @@ const Lending = () => {
                                 bgcolor: 'primary.main', // theme.palette.primary.main
                                 color: 'white',
                                 },
-                            }}>List an Item</Button>
+                            }} onClick={() => navigate('/list-item')}>List an Item</Button>
                         </div>
                     </div>
                 </div>
@@ -60,3 +54,15 @@ const Lending = () => {
 }
 
 export default Lending
+
+
+
+
+{/* <div className='dates-hired'>
+                            <Typography variant='h6' className='renting-headings'>{'Availability'}</Typography>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DemoContainer components={['DatePicker']}>
+                                    <DatePicker  />
+                                </DemoContainer>
+                            </LocalizationProvider>
+                    </div> */}

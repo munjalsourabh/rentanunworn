@@ -7,6 +7,7 @@ const initialState = {
         fit: [],
         clothSize: [],
         shoes: [],
+        gender: [],
         priceRange: [],
         availability: [],
         radius: [],
@@ -83,6 +84,14 @@ export const filtersSlice = createSlice({
         },
         removeRadius: (state, {payload}) => {
             state.filters.radius = [];
+        },
+
+        addGender: (state, {payload}) => {
+            state.filters.gender = [...state.filters.gender, payload];
+        },
+        removeGender: (state, {payload}) => {
+            const filterIndex = state.filters.gender.indexOf(payload);
+            state.filters.gender.splice(filterIndex, 1);
         }
     }
 })
@@ -101,7 +110,9 @@ export const {
     addAvailability,
     removeAvailability,
     addRadius,
-    removeRadius
+    removeRadius,
+    addGender,
+    removeGender
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

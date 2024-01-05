@@ -7,6 +7,8 @@ import '../../filters/Filters.scss'
 import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addAvailability } from '../../../features/filters/filtersSlice';
+import dayjs from 'dayjs';
+
 
 const Calendar = () => {
 
@@ -19,8 +21,9 @@ const Calendar = () => {
     const [value, setValue] = React.useState(null);
 
     const updateDateVal = (newValue) => {
-        updateCalendarDate(newValue);
-        setValue(newValue);
+        const stringValue = dayjs(newValue.$d).format('YYYY-MM-DD');
+        updateCalendarDate(stringValue);
+        setValue(stringValue);
 
     }
     return (
